@@ -12,7 +12,7 @@ $museums_query = "
     FROM museum_ratings
     GROUP BY museum_name
     ORDER BY avg_rating DESC, total_reviews DESC
-    LIMIT 10
+    LIMIT 11
 ";
 
 $museums_result = $conn->query($museums_query);
@@ -28,7 +28,7 @@ if ($museums_result && $museums_result->num_rows > 0) {
     }
 } else {
     // Jika tidak ada data rating, ambil museum unik saja
-    $fallback_query = "SELECT DISTINCT museum_name FROM museum_ratings ORDER BY museum_name LIMIT 10";
+    $fallback_query = "SELECT DISTINCT museum_name FROM museum_ratings ORDER BY museum_name LIMIT 11";
     $fallback_result = $conn->query($fallback_query);
     if ($fallback_result && $fallback_result->num_rows > 0) {
         while ($row = $fallback_result->fetch_assoc()) {
